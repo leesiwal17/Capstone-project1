@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTFOLIO | 디자이너 포트폴리오</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Pretendard only -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ivory: {
+              50: '#FAF9F6',
+              100: '#F4F1EA',
+              200: '#E8E2D5',
+              300: '#DDD4C1',
+            }
+          },
+          fontFamily: {
+            sans: ['"Pretendard"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+    }
+    .tab-content {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .tab-content.active {
+      display: block;
+      opacity: 1;
+    }
+    /* 돋보기 렌즈 스타일 */
+    .img-zoom-container {
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+    .img-zoom-lens {
+      position: absolute;
+      border: 2px solid #000;
+      background-repeat: no-repeat;
+      pointer-events: none;
+      display: none;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+      z-index: 20;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-ivory-100 text-slate-900 font-sans antialiased flex flex-col justify-between selection:bg-black selection:text-white">
+
+  <!-- ================= GNB / NAVIGATION ================= -->
+  <nav class="sticky top-0 z-50 bg-ivory-100/90 backdrop-blur-md border-b border-black/10 px-6 py-4 md:px-12 flex items-center justify-between">
+    <div class="flex items-center space-x-3">
+      <span class="w-3 h-3 bg-black rounded-full inline-block"></span>
+      <span class="font-bold tracking-widest text-lg">DESIGNER PORTFOLIO</span>
+    </div>
+
+    <div class="flex items-center space-x-2 md:space-x-4 font-medium text-sm md:text-base">
+      <button 
+        id="btn-about"
+        onclick="switchTab('about')" 
+        class="px-4 py-2 rounded-full transition-all duration-300 border border-black bg-black text-ivory-50 shadow-sm">
+        나의 소개
+      </button>
+      <button 
+        id="btn-works"
+        onclick="switchTab('works')" 
+        class="px-4 py-2 rounded-full transition-all duration-300 border border-transparent hover:border-black/30 text-slate-700">
+        나의 작품
+      </button>
+    </div>
+  </nav>
+
+  <!-- ================= MAIN CONTENT AREA ================= -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 md:px-8 py-8 md:py-12">
+
+    <!-- ---------------- PAGE 1: 나의 소개 (ABOUT ME) ---------------- -->
+    <section id="tab-about" class="tab-content active space-y-12">
+      <div class="bg-white rounded-3xl p-6 sm:p-10 md:p-12 shadow-lg border border-black/5 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
+        
+        <div class="md:col-span-5 flex flex-col items-center">
+          <div class="relative w-64 sm:w-72 aspect-[3/4] rounded-2xl overflow-hidden shadow-xl border-4 border-ivory-100 bg-ivory-50 group">
+            <img 
+              src="image/프로필.png" 
+              alt="디자이너 프로필" 
+              onerror="this.onerror=null; this.src='image/프로필.jpg';"
+              class="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60"></div>
+            <span class="absolute bottom-4 left-4 text-xs text-ivory-100 bg-black/60 backdrop-blur-md px-3 py-1 rounded-full">
+              Industrial & Spatial Designer
+            </span>
+          </div>
+        </div>
+
+        <div class="md:col-span-7 space-y-6 text-left">
+          <div class="space-y-2 border-b border-black/10 pb-6">
+            <span class="text-xs font-bold tracking-widest text-slate-500 uppercase">Profile & Vision</span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold text-black leading-tight">
+              창의적인 가치를 디자인하는<br/>디자이너입니다.
+            </h1>
+          </div>
+
+          <p class="text-slate-700 leading-relaxed text-base sm:text-lg break-keep">
+            공간과 제품의 경계를 넘어 사용자에게 정서적 교감과 기능적 명확성을 제공하는 디자인을 탐구합니다. 
+            주변 환경과의 조화를 고려한 인프라·공간 설계부터 손끝에서 느껴지는 정교한 유저 익스피리언스 제품까지, 치열한 분석과 감각적인 조형미로 완성도 높은 디자인 솔루션을 제안합니다.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-ivory-100/70 border border-black/5">
+              <h3 class="text-xs font-bold text-slate-500 mb-1">DESIGN FIELD</h3>
+              <p class="text-sm sm:text-base font-semibold text-black">공간 디자인 / 제품 디자인</p>
+            </div>
+            <div class="p-4 rounded-xl bg-ivory-100/70 border border-black/5">
+              <h3 class="text-xs font-bold text-slate-500 mb-1">SOFTWARE TOOLS</h3>
+              <p class="text-sm sm:text-base font-semibold text-black">Rhino / 3ds Max / Figma / Adobe</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ---------------- PAGE 2: 나의 작품 (WORKS) ---------------- -->
+    <section id="tab-works" class="tab-content space-y-16">
+      
+      <div class="text-center space-y-3 pb-4 border-b border-black/10">
+        <span class="text-xs font-bold tracking-widest text-slate-500 uppercase">Selected Projects</span>
+        <h2 class="text-3xl sm:text-4xl font-bold text-black">나의 대표 작품</h2>
+        <p class="text-slate-600 text-sm sm:text-base">공간 및 제품 분야별 판넬 상세 분석과 실물 목업 프레젠테이션</p>
+      </div>
+
+      <!-- WORK 01: 공간디자인 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-black/5 space-y-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-black/10 pb-6 gap-4">
+          <div>
+            <span class="inline-block px-3 py-1 bg-black text-ivory-50 text-xs font-bold tracking-widest rounded-full mb-2">
+              PROJECT 01
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-bold text-black">공간디자인 : 삼락생태공원 오픈형 전망대</h3>
+          </div>
+          <span class="text-sm text-slate-500">Spatial & Environmental Architecture Design</span>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-black"></span> 1. 디자인 판넬 전체보기 (Full Panel Overview)
+            </h4>
+            <div class="flex items-center space-x-2">
+              <button onclick="toggleMagnifier('panel-img-1', 'mag-btn-1')" id="mag-btn-1" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-ivory-100 border border-black/10 hover:bg-ivory-200 transition-all flex items-center gap-1">
+                🔍 돋보기 모드 켜기
+              </button>
+              <button onclick="toggleAccordion('panel-box-1', 'acc-text-1')" id="acc-text-1" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-black text-ivory-50 hover:bg-slate-800 transition-all">
+                판넬 접기 ▴
+              </button>
+            </div>
+          </div>
+
+          <div id="panel-box-1" class="transition-all duration-300 overflow-hidden">
+            <div class="rounded-2xl overflow-hidden border border-black/10 bg-ivory-50 p-2 sm:p-4 shadow-inner img-zoom-container" id="container-1">
+              <div id="lens-1" class="img-zoom-lens"></div>
+              <img 
+                id="panel-img-1"
+                src="image/판넬1.png" 
+                alt="공간디자인 판넬 전체" 
+                onerror="this.onerror=null; this.src='image/판넬1.jpg';"
+                class="w-full h-auto rounded-xl shadow-md object-contain block mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4">
+          <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-black"></span> 2. 판넬 핵심 디자인 특징 분석 (Detail Breakdown)
+          </h4>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">01 / CONCEPT</span>
+              <h5 class="font-bold text-base text-black">자연과 어우러지는 랜드마크</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                새로운 시선을 사로잡는 수평·수직적 관람 거점 형성. 자연 생태계와의 조화로운 설계로 낙동강과 숲이 어우러진 친환경 조형성을 강조했습니다.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">02 / ANALYSIS</span>
+              <h5 class="font-bold text-base text-black">방문객 데이터 & 입면 분석</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                삼락생태공원 방문객 수 추이 및 성별 비중 분석 데이터를 바탕으로, 일몰과 휴식을 모두 수용할 수 있는 삼각 세그먼트 구조를 도출했습니다.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">03 / OBJECTIVES</span>
+              <h5 class="font-bold text-base text-black">지역 발전과 가치 창출</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                관광명소화, 자연경관 보존, 지역 경제 견인의 3대 목표를 수립하여 삼락생태공원만의 독창적인 아이덴티티를 확립했습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-4 border-t border-black/10">
+          <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-black"></span> 3. 실물 모형 전시 (Exhibition Mock-up)
+          </h4>
+          <div class="rounded-2xl overflow-hidden border border-black/10 bg-black/5 p-2 sm:p-4">
+            <img 
+              src="image/목업1.jpg" 
+              alt="공간디자인 목업" 
+              onerror="this.onerror=null; this.src='image/목업1.png';"
+              class="w-full h-auto rounded-xl shadow-lg max-h-[600px] object-cover mx-auto"
+            />
+          </div>
+          <p class="text-xs text-slate-500 text-center pt-1">▲ 삼락생태공원 오픈형 전망대 3D 렌더링 축척 모형 전시 스케일</p>
+        </div>
+
+      </article>
+
+      <!-- WORK 02: 제품디자인 -->
+      <article class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-black/5 space-y-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between border-b border-black/10 pb-6 gap-4">
+          <div>
+            <span class="inline-block px-3 py-1 bg-black text-ivory-50 text-xs font-bold tracking-widest rounded-full mb-2">
+              PROJECT 02
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-bold text-black">제품디자인 : WrinkleCARE 휴대용 다목적 다리미</h3>
+          </div>
+          <span class="text-sm text-slate-500">Portable Multi-Iron Product Design</span>
+        </div>
+
+        <div class="space-y-3">
+          <div class="flex items-center justify-between">
+            <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-black"></span> 1. 디자인 판넬 전체보기 (Full Panel Overview)
+            </h4>
+            <div class="flex items-center space-x-2">
+              <button onclick="toggleMagnifier('panel-img-2', 'mag-btn-2')" id="mag-btn-2" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-ivory-100 border border-black/10 hover:bg-ivory-200 transition-all flex items-center gap-1">
+                🔍 돋보기 모드 켜기
+              </button>
+              <button onclick="toggleAccordion('panel-box-2', 'acc-text-2')" id="acc-text-2" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-black text-ivory-50 hover:bg-slate-800 transition-all">
+                판넬 접기 ▴
+              </button>
+            </div>
+          </div>
+
+          <div id="panel-box-2" class="transition-all duration-300 overflow-hidden">
+            <div class="rounded-2xl overflow-hidden border border-black/10 bg-ivory-50 p-2 sm:p-4 shadow-inner img-zoom-container" id="container-2">
+              <div id="lens-2" class="img-zoom-lens"></div>
+              <img 
+                id="panel-img-2"
+                src="image/판넬2.png" 
+                alt="제품디자인 판넬 전체" 
+                onerror="this.onerror=null; this.src='image/판넬2.jpg';"
+                class="w-full h-auto rounded-xl shadow-md object-contain block mx-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4">
+          <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-black"></span> 2. 판넬 핵심 기능 & 구조 분석 (Detail Breakdown)
+          </h4>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">01 / CONCEPT & STYLING</span>
+              <h5 class="font-bold text-base text-black">휴대용 다목적 하이브리드</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                외출 전후나 여행지에서 옷차림 정돈과 헤어 세팅을 하나의 기기로 해결하는 컴팩트 멀티 스타일링 아플라이언스입니다.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">02 / RENDERING & MECHANISM</span>
+              <h5 class="font-bold text-base text-black">치수 및 가변 구조</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                접었을 때 30cm 규격의 간편한 휴대성 확보. 건식 다리미 기능과 고데기 열판을 접목한 인체공학적 조형 디자인입니다.
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-ivory-50 border border-black/5 space-y-2">
+              <span class="text-xs font-bold text-slate-400">03 / FUNCTION & UI</span>
+              <h5 class="font-bold text-base text-black">직관적 인터페이스</h5>
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                슬라이더 타입 모드 스위치, 버튼식 스팀 분사, 단계별 온도 조절 기능을 탑재하여 오작동과 옷감 찝힘을 방지했습니다.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-4 border-t border-black/10">
+          <h4 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-black"></span> 3. 시제품 목업 전시 (Working Prototype Mock-up)
+          </h4>
+          <div class="rounded-2xl overflow-hidden border border-black/10 bg-black/5 p-2 sm:p-4">
+            <img 
+              src="image/목업2.jpg" 
+              alt="제품디자인 목업" 
+              onerror="this.onerror=null; this.src='image/목업2.png';"
+              class="w-full h-auto rounded-xl shadow-lg max-h-[600px] object-cover mx-auto"
+            />
+          </div>
+          <p class="text-xs text-slate-500 text-center pt-1">▲ WrinkleCARE 실물 양산형 워킹 목업(Working Mock-up) 전시 프로토타입</p>
+        </div>
+
+      </article>
+
+      <!-- ================= ANONYMOUS GUESTBOOK COMMENTS ================= -->
+      <section class="bg-white rounded-3xl p-6 sm:p-10 shadow-lg border border-black/5 space-y-8">
+        <div class="border-b border-black/10 pb-4">
+          <span class="inline-block px-3 py-1 bg-black text-ivory-50 text-xs font-bold tracking-widest rounded-full mb-2">
+            GUESTBOOK
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-bold text-black">방명록 & 익명 댓글</h3>
+          <p class="text-slate-600 text-xs sm:text-sm mt-1">포트폴리오에 대한 소중한 감상평이나 응원의 메시지를 남겨주세요!</p>
+        </div>
+
+        <!-- 댓글 작성 폼 -->
+        <form id="comment-form" onsubmit="addComment(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">작성자 닉네임</label>
+              <input type="text" id="comment-author" placeholder="이름 또는 닉네임" required class="w-full px-4 py-2.5 rounded-xl border border-black/10 bg-ivory-50 focus:outline-none focus:border-black text-sm transition-all" />
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-600 mb-1">비밀번호 (삭제용)</label>
+              <input type="password" id="comment-pw" placeholder="댓글 삭제 시 필요한 비밀번호" required class="w-full px-4 py-2.5 rounded-xl border border-black/10 bg-ivory-50 focus:outline-none focus:border-black text-sm transition-all" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 mb-1">댓글 내용</label>
+            <textarea id="comment-text" rows="3" placeholder="자유롭게 감상평을 남겨주세요..." required class="w-full px-4 py-2.5 rounded-xl border border-black/10 bg-ivory-50 focus:outline-none focus:border-black text-sm transition-all resize-none"></textarea>
+          </div>
+          <div class="flex justify-end">
+            <button type="submit" class="px-6 py-2.5 bg-black text-ivory-50 text-xs sm:text-sm font-semibold rounded-xl hover:bg-slate-800 transition-all shadow-sm">
+              댓글 등록하기
+            </button>
+          </div>
+        </form>
+
+        <!-- 댓글 목록 영역 -->
+        <div class="space-y-4 pt-4 border-t border-black/10">
+          <h4 class="text-sm font-bold text-slate-800 flex items-center justify-between">
+            <span>등록된 방명록</span>
+            <span id="comment-count" class="text-xs text-slate-500 font-normal">0개</span>
+          </h4>
+          <div id="comments-container" class="space-y-3">
+            <!-- 자바스크립트로 댓글이 동적으로 렌더링됩니다 -->
+          </div>
+        </div>
+      </section>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="w-full border-t border-black/10 bg-ivory-200/50 py-8 px-6 text-center text-xs text-slate-600">
+    <p>© DESIGNER PORTFOLIO. ALL RIGHTS RESERVED.</p>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <script>
+    // 탭 전환 함수
+    function switchTab(tabName) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      const activeTab = document.getElementById('tab-' + tabName);
+      if (activeTab) {
+        activeTab.classList.add('active');
+      }
+
+      const btnAbout = document.getElementById('btn-about');
+      const btnWorks = document.getElementById('btn-works');
+
+      if (tabName === 'about') {
+        btnAbout.className = "px-4 py-2 rounded-full transition-all duration-300 border border-black bg-black text-ivory-50 shadow-sm";
+        btnWorks.className = "px-4 py-2 rounded-full transition-all duration-300 border border-transparent hover:border-black/30 text-slate-700";
+      } else {
+        btnWorks.className = "px-4 py-2 rounded-full transition-all duration-300 border border-black bg-black text-ivory-50 shadow-sm";
+        btnAbout.className = "px-4 py-2 rounded-full transition-all duration-300 border border-transparent hover:border-black/30 text-slate-700";
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 판넬 접기/펼치기 아코디언 함수
+    function toggleAccordion(boxId, btnId) {
+      const box = document.getElementById(boxId);
+      const btn = document.getElementById(btnId);
+      
+      if (box.style.display === 'none') {
+        box.style.display = 'block';
+        btn.innerHTML = '판넬 접기 ▴';
+      } else {
+        box.style.display = 'none';
+        btn.innerHTML = '판넬 펼치기 ▾';
+      }
+    }
+
+    // 쿠팡 스타일 돋보기 모드 토글 및 이벤트 핸들러
+    const activeMagnifiers = {};
+
+    function toggleMagnifier(imgId, btnId) {
+      const img = document.getElementById(imgId);
+      const container = img.parentElement;
+      const lensId = 'lens-' + imgId.replace('panel-img-', '');
+      const lens = document.getElementById(lensId);
+      const btn = document.getElementById(btnId);
+
+      if (!activeMagnifiers[imgId]) {
+        activeMagnifiers[imgId] = true;
+        btn.innerHTML = '✨ 돋보기 끄기';
+        btn.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-black text-ivory-50 transition-all flex items-center gap-1";
+        lens.style.display = 'block';
+
+        setupZoom(img, container, lens);
+      } else {
+        activeMagnifiers[imgId] = false;
+        btn.innerHTML = '🔍 돋보기 모드 켜기';
+        btn.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-ivory-100 border border-black/10 hover:bg-ivory-200 transition-all flex items-center gap-1";
+        lens.style.display = 'none';
+
+        removeZoom(img, container);
+      }
+    }
+
+    function setupZoom(img, container, lens) {
+      const zoom = 2.5;
+
+      function moveLens(e) {
+        if (!activeMagnifiers[img.id]) return;
+        e.preventDefault();
+        const pos = getCursorPos(e);
+        let x = pos.x;
+        let y = pos.y;
+
+        const lensSize = lens.offsetWidth / 2;
+        if (x > img.width - lensSize) x = img.width - lensSize;
+        if (x < lensSize) x = lensSize;
+        if (y > img.height - lensSize) y = img.height - lensSize;
+        if (y < lensSize) y = lensSize;
+
+        lens.style.left = (x - lensSize) + "px";
+        lens.style.top = (y - lensSize) + "px";
+
+        lens.style.backgroundImage = `url('${img.src}')`;
+        lens.style.backgroundSize = `${img.width * zoom}px ${img.height * zoom}px`;
+        lens.style.backgroundPosition = `-${(x * zoom) - lens.offsetWidth / 2}px -${(y * zoom) - lens.offsetHeight / 2}px`;
+      }
+
+      function getCursorPos(e) {
+        const rect = img.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        return { x: x, y: y };
+      }
+
+      container.onmousemove = moveLens;
+      lens.onmousemove = moveLens;
+    }
+
+    function removeZoom(img, container) {
+      container.onmousemove = null;
+      const lensId = 'lens-' + img.id.replace('panel-img-', '');
+      const lens = document.getElementById(lensId);
+      if(lens) lens.style.display = 'none';
+    }
+
+    // ================= 익명 댓글(방문록) 시스템 =================
+    document.addEventListener("DOMContentLoaded", function () {
+      loadComments();
+    });
+
+    function getComments() {
+      const comments = localStorage.getItem('portfolio_comments');
+      return comments ? JSON.parse(comments) : [];
+    }
+
+    function saveComments(comments) {
+      localStorage.setItem('portfolio_comments', JSON.stringify(comments));
+    }
+
+    function addComment(event) {
+      event.preventDefault();
+      const authorInput = document.getElementById('comment-author');
+      const pwInput = document.getElementById('comment-pw');
+      const textInput = document.getElementById('comment-text');
+
+      const newComment = {
+        id: Date.now(),
+        author: authorInput.value.trim(),
+        pw: pwInput.value.trim(),
+        text: textInput.value.trim(),
+        date: new Date().toLocaleDateString() + ' ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+
+      const comments = getComments();
+      comments.unshift(newComment); // 최신 글이 위로 오도록 추가
+      saveComments(comments);
+
+      // 입력폼 초기화
+      authorInput.value = '';
+      pwInput.value = '';
+      textInput.value = '';
+
+      loadComments();
+    }
+
+    function deleteComment(id) {
+      const pw = prompt("댓글 작성 시 설정한 비밀번호를 입력해주세요:");
+      if (pw === null) return;
+
+      let comments = getComments();
+      const commentIndex = comments.findIndex(c => c.id === id);
+
+      if (commentIndex !== -1) {
+        if (comments[commentIndex].pw === pw) {
+          comments.splice(commentIndex, 1);
+          saveComments(comments);
+          loadComments();
+        } else {
+          alert("비밀번호가 일치하지 않습니다!");
+        }
+      }
+    }
+
+    function loadComments() {
+      const container = document.getElementById('comments-container');
+      const countSpan = document.getElementById('comment-count');
+      const comments = getComments();
+
+      countSpan.textContent = comments.length + '개';
+
+      if (comments.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-8 text-slate-400 text-xs sm:text-sm bg-ivory-50 rounded-2xl border border-black/5">
+            아직 등록된 방명록이 없습니다. 첫 번째 감상평을 남겨보세요!
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = '';
+      comments.forEach(c => {
+        const div = document.createElement('div');
+        div.className = "p-4 sm:p-5 rounded-2xl bg-ivory-50 border border-black/5 flex flex-col space-y-2";
+        div.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-sm text-black">${escapeHtml(c.author)}</span>
+            <div class="flex items-center space-x-3">
+              <span class="text-[11px] text-slate-400">${c.date}</span>
+              <button onclick="deleteComment(${c.id})" class="text-[11px] text-red-500 hover:underline">삭제</button>
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed break-all">${escapeHtml(c.text)}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // XSS 방지용 HTML Escape 헬퍼 함수
+    function escapeHtml(str) {
+      return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+    }
+  </script>
+
+</body>
+</html>
